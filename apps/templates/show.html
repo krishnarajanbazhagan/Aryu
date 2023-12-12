@@ -1,0 +1,65 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block stylesheets %}
+  <!-- Link Bootstrap CSS or relevant stylesheet here -->
+  <!-- Add any additional CSS for your table if needed -->
+  <!-- Example: -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <h3 class="mb-0">Employee Records</h3>
+        </div>
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <!-- Table headers -->
+            <thead class="thead-dark">
+              <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Employee Email</th>
+                <th>Employee Contact</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <!-- Table body -->
+            <tbody>
+              {% for employee in employees %}
+              <tr>
+                <td>{{ employee.eid }}</td>
+                <td>{{ employee.ename }}</td>
+                <td>{{ employee.eemail }}</td>
+                <td>{{ employee.econtact }}</td>
+                <td>
+                  <a href="/edit/{{ employee.id }}" class="btn btn-sm btn-primary">Edit</a>
+                  <a href="/delete/{{ employee.id }}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add New Record Button outside the table -->
+<div class="text-center mt-3">
+  <a href="/emp" class="btn btn-primary">Add New Record</a>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  <!-- Include any required JavaScript files -->
+  <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+{% endblock javascripts %}
